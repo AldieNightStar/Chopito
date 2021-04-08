@@ -1,0 +1,5 @@
+main: haxidenti.chopito.Main
+name: Chopito
+version: 1.0
+author: haxidenti
+api-version: 1.13
