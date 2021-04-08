@@ -9,6 +9,7 @@ import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.logging.Level;
 
 class CWorld {
@@ -21,7 +22,7 @@ class CWorld {
     public void setBlock(int x, int y, int z, Material type) {
         try {
             Block block = world.getBlockAt(x, y, z);
-            block.setType(type);
+            block.setType(type, false);
         } catch (Exception e) {
             Bukkit.getLogger().log(Level.WARNING, e.getMessage());
         }
@@ -36,14 +37,15 @@ class CWorld {
         }
     }
 
-    public void destroyBlock(int x, int y, int z) {
+    public Collection<ItemStack> destroyBlockAndDrop(int x, int y, int z) {
         try {
             Block block = world.getBlockAt(x, y, z);
             Collection<ItemStack> drops = block.getDrops();
-            drops.forEach(d -> world.dropItem(new Location(world, x, y, z), d));
             block.setType(Material.AIR);
+            return drops;
         } catch (Exception e) {
             Bukkit.getLogger().log(Level.WARNING, e.getMessage());
+            return Collections.emptyList();
         }
     }
 }
