@@ -73,7 +73,7 @@ public class ChopitoAPI {
     }
 
 
-    public static void chopAt(Location location, Plugin executorPlugin) {
+    public static void chopAt(Location location, Location dropLocation, Plugin executorPlugin) {
         Block block = location.getBlock();
         if (!woods.contains(block.getType())) {
             return;
@@ -107,7 +107,7 @@ public class ChopitoAPI {
                                 });
                                 grounded.set(false);
                             } else {
-                                blockWorld.dropItem(new Location(blockWorld, x, y, z), d);
+                                blockWorld.dropItem(dropLocation, d);
                             }
                         });
                     }

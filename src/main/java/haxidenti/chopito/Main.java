@@ -1,5 +1,6 @@
 package haxidenti.chopito;
 
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -39,7 +40,8 @@ public class Main extends JavaPlugin implements Listener {
             return;
         }
 
-        ChopitoAPI.chopAt(e.getBlock().getLocation(), this);
+        Location location = e.getBlock().getLocation();
+        ChopitoAPI.chopAt(location, location, this);
     }
 
 
